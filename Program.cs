@@ -111,29 +111,54 @@
             //    Console.WriteLine("Error: " + ex.Message);
             //} 
             #endregion
-            string[] firstLine = Console.ReadLine().Split();
-            int n = int.Parse(firstLine[0]);
-            int q = int.Parse(firstLine[1]);
+            #region 5
+            //string[] firstLine = Console.ReadLine().Split();
+            //int n = int.Parse(firstLine[0]);
+            //int q = int.Parse(firstLine[1]);
 
+            //int[] arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            //for (int i = 0; i < q; i++)
+            //{
+            //    int x = int.Parse(Console.ReadLine());
+            //    int count = 0;
+
+            //    foreach (int num in arr)
+            //    {
+            //        if (num > x)
+            //            count++;
+            //    }
+
+            //    Console.WriteLine(count); 
+            #endregion
+            // Read the size of the array
+            int n = int.Parse(Console.ReadLine());
+
+            // Read array elements
             int[] arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            for (int i = 0; i < q; i++)
+            bool isPalindrome = true;
+
+            for (int i = 0; i < n / 2; i++)
             {
-                int x = int.Parse(Console.ReadLine());
-                int count = 0;
-
-                foreach (int num in arr)
+                if (arr[i] != arr[n - i - 1])
                 {
-                    if (num > x)
-                        count++;
+                    isPalindrome = false;
+                    break;
                 }
-
-                Console.WriteLine(count);
             }
+
+            if (isPalindrome)
+                Console.WriteLine("YES");
+            else
+                Console.WriteLine("NO");
+        
+
+    }
         }
 
     }
-    }
+  
 
    
 
