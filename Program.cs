@@ -95,24 +95,52 @@
 
 
         #region 9
-        static int[] RemoveDuplicates(int[] arr)
-        {
-            HashSet<int> uniqueElements = new HashSet<int>();
+        //static int[] RemoveDuplicates(int[] arr)
+        //{
+        //    HashSet<int> uniqueElements = new HashSet<int>();
 
-            foreach (int num in arr)
-            {
-                uniqueElements.Add(num);
-            }
+        //    foreach (int num in arr)
+        //    {
+        //        uniqueElements.Add(num);
+        //    }
 
-            return uniqueElements.ToArray();
+        //    return uniqueElements.ToArray();
 
-        } 
+        //} 
         #endregion
         #region 10
         //static void RemoveOddNumbers(List<int> list)
         //{
         //    list.RemoveAll(n => n % 2 != 0);
         //} 
+        #endregion
+        #region 12
+        static void SearchInStack(Stack<int> stack, int target)
+        {
+            int count = 0;
+            bool found = false;
+
+            // Create a temporary copy since popping will remove elements
+            Stack<int> tempStack = new Stack<int>(stack);
+
+            while (tempStack.Count > 0)
+            {
+                int top = tempStack.Pop();
+                count++;
+
+                if (top == target)
+                {
+                    Console.WriteLine($"Target was found successfully and the count = {count}");
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Target was not found");
+            }
+        } 
         #endregion
 
         static void Main(string[] args)
@@ -278,13 +306,34 @@
             //Console.WriteLine("After Removing Odd Numbers: " + string.Join(", ", numbers)); 
             #endregion
             #region 9
-            int[] arr = { 1, 3, 5, 3, 1, 7, 5, 9 };
+            //int[] arr = { 1, 3, 5, 3, 1, 7, 5, 9 };
 
-            int[] result = RemoveDuplicates(arr);
+            //int[] result = RemoveDuplicates(arr);
 
-            Console.WriteLine("Original Array: " + string.Join(", ", arr));
-            Console.WriteLine("Array without duplicates: " + string.Join(", ", result));
+            //Console.WriteLine("Original Array: " + string.Join(", ", arr));
+            //Console.WriteLine("Array without duplicates: " + string.Join(", ", result));
             #endregion
+            #region 12
+            Stack<int> numbers = new Stack<int>();
+
+            numbers.Push(10);
+            numbers.Push(20);
+            numbers.Push(30);
+            numbers.Push(40);
+            numbers.Push(50);
+
+            Console.WriteLine("Stack contents (top to bottom):");
+            foreach (int num in numbers)
+            {
+                Console.WriteLine(num);
+            }
+
+            Console.Write("\nEnter the target number to search for: ");
+            int target = int.Parse(Console.ReadLine());
+
+            SearchInStack(numbers, target); 
+            #endregion
+
         }
 
     }
