@@ -43,6 +43,23 @@
         //    return evenNumbers;
         //} 
         #endregion
+        #region 7
+        static void ReverseQueue<T>(Queue<T> queue)
+        {
+            Stack<T> stack = new Stack<T>();
+
+            while (queue.Count > 0)
+            {
+                stack.Push(queue.Dequeue());
+            }
+
+            while (stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop());
+            }
+        } 
+        #endregion
+
         static void Main(string[] args)
         {
             #region 4
@@ -131,30 +148,53 @@
 
             //    Console.WriteLine(count); 
             #endregion
-            // Read the size of the array
-            int n = int.Parse(Console.ReadLine());
+            #region 6
+            //int n = int.Parse(Console.ReadLine());
 
-            // Read array elements
-            int[] arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            //int[] arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            bool isPalindrome = true;
+            //bool isPalindrome = true;
 
-            for (int i = 0; i < n / 2; i++)
+            //for (int i = 0; i < n / 2; i++)
+            //{
+            //    if (arr[i] != arr[n - i - 1])
+            //    {
+            //        isPalindrome = false;
+            //        break;
+            //    }
+            //}
+
+            //if (isPalindrome)
+            //    Console.WriteLine("YES");
+            //else
+            //    Console.WriteLine("NO");
+
+            #endregion
+            #region 7
+            Queue<int> numbers = new Queue<int>();
+
+            numbers.Enqueue(10);
+            numbers.Enqueue(20);
+            numbers.Enqueue(30);
+            numbers.Enqueue(40);
+
+            Console.WriteLine("Original Queue:");
+            foreach (var num in numbers)
             {
-                if (arr[i] != arr[n - i - 1])
-                {
-                    isPalindrome = false;
-                    break;
-                }
+                Console.Write(num + " ");
             }
 
-            if (isPalindrome)
-                Console.WriteLine("YES");
-            else
-                Console.WriteLine("NO");
-        
+            ReverseQueue(numbers);
 
-    }
+            Console.WriteLine("\nReversed Queue:");
+            foreach (var num in numbers)
+            {
+                Console.Write(num + " ");
+            } 
+            #endregion
+
+
+        }
         }
 
     }
