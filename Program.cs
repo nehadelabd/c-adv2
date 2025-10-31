@@ -1,6 +1,7 @@
 ﻿namespace c_adv2
 {
     using System.Collections;
+    using System.Linq;
     using System.Collections.Generic;
 
     internal class Program
@@ -93,12 +94,27 @@
         #endregion
 
 
+        #region 9
+        static int[] RemoveDuplicates(int[] arr)
+        {
+            HashSet<int> uniqueElements = new HashSet<int>();
+
+            foreach (int num in arr)
+            {
+                uniqueElements.Add(num);
+            }
+
+            return uniqueElements.ToArray();
+
+        } 
+        #endregion
         #region 10
         //static void RemoveOddNumbers(List<int> list)
         //{
         //    list.RemoveAll(n => n % 2 != 0);
         //} 
         #endregion
+
         static void Main(string[] args)
         {
             #region 4
@@ -261,9 +277,19 @@
             //RemoveOddNumbers(numbers);
             //Console.WriteLine("After Removing Odd Numbers: " + string.Join(", ", numbers)); 
             #endregion
+            #region 9
+            int[] arr = { 1, 3, 5, 3, 1, 7, 5, 9 };
+
+            int[] result = RemoveDuplicates(arr);
+
+            Console.WriteLine("Original Array: " + string.Join(", ", arr));
+            Console.WriteLine("Array without duplicates: " + string.Join(", ", result));
+            #endregion
         }
+
     }
 }
+
 
         
 
