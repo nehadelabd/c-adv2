@@ -142,30 +142,60 @@
         //} 
         #endregion
         #region 13
-        static int[] FindIntersection(int[] arr1, int[] arr2)
+        //static int[] FindIntersection(int[] arr1, int[] arr2)
+        //{
+        //    List<int> result = new List<int>();
+        //    Dictionary<int, int> freq = new Dictionary<int, int>();
+
+        //    foreach (int num in arr1)
+        //    {
+        //        if (freq.ContainsKey(num))
+        //            freq[num]++;
+        //        else
+        //            freq[num] = 1;
+        //    }
+
+        //    foreach (int num in arr2)
+        //    {
+        //        if (freq.ContainsKey(num) && freq[num] > 0)
+        //        {
+        //            result.Add(num);
+        //            freq[num]--;
+        //        }
+        //    }
+
+        //    return result.ToArray();
+        //} 
+        #endregion
+        #region 14
+        static ArrayList FindSubListWithSum(ArrayList list, int target)
         {
-            List<int> result = new List<int>();
-            Dictionary<int, int> freq = new Dictionary<int, int>();
+            int currentSum = 0;
+            int start = 0;
 
-            foreach (int num in arr1)
+            for (int end = 0; end < list.Count; end++)
             {
-                if (freq.ContainsKey(num))
-                    freq[num]++;
-                else
-                    freq[num] = 1;
-            }
+                currentSum += (int)list[end];
 
-            foreach (int num in arr2)
-            {
-                if (freq.ContainsKey(num) && freq[num] > 0)
+                while (currentSum > target && start < end)
                 {
-                    result.Add(num);
-                    freq[num]--;
+                    currentSum -= (int)list[start];
+                    start++;
+                }
+
+                if (currentSum == target)
+                {
+                    ArrayList result = new ArrayList();
+                    for (int i = start; i <= end; i++)
+                    {
+                        result.Add(list[i]);
+                    }
+                    return result;
                 }
             }
 
-            return result.ToArray();
-        } 
+            return new ArrayList();
+        }
         #endregion
         static void Main(string[] args)
         {
@@ -358,29 +388,39 @@
             //SearchInStack(numbers, target); 
             #endregion
             #region 13
-            string[] sizes = Console.ReadLine().Split(',');
-            int n1 = int.Parse(sizes[0]);
-            int n2 = int.Parse(sizes[1]);
+            //string[] sizes = Console.ReadLine().Split(',');
+            //int n1 = int.Parse(sizes[0]);
+            //int n2 = int.Parse(sizes[1]);
 
-            int[] arr1 = Console.ReadLine()
-                                .Trim('[', ']', ' ')
-                                .Split(',')
-                                .Select(int.Parse)
-                                .ToArray();
+            //int[] arr1 = Console.ReadLine()
+            //                    .Trim('[', ']', ' ')
+            //                    .Split(',')
+            //                    .Select(int.Parse)
+            //                    .ToArray();
 
-            int[] arr2 = Console.ReadLine()
-                                .Trim('[', ']', ' ')
-                                .Split(',')
-                                .Select(int.Parse)
-                                .ToArray();
+            //int[] arr2 = Console.ReadLine()
+            //                    .Trim('[', ']', ' ')
+            //                    .Split(',')
+            //                    .Select(int.Parse)
+            //                    .ToArray();
 
-            int[] intersection = FindIntersection(arr1, arr2);
+            //int[] intersection = FindIntersection(arr1, arr2);
 
-            Console.WriteLine("[" + string.Join(",", intersection) + "]");
-        
-        #endregion
+            //Console.WriteLine("[" + string.Join(",", intersection) + "]");
 
-    }
+            #endregion
+            #region 14
+            ArrayList numbers = new ArrayList() { 1, 2, 3, 7, 5 };
+            int target = 12;
+
+            ArrayList result = FindSubListWithSum(numbers, target);
+
+            if (result.Count > 0)
+                Console.WriteLine("[" + string.Join(", ", result.ToArray()) + "]");
+            else
+                Console.WriteLine("No sublist found");
+            #endregion
+        }
 
     }
 }
