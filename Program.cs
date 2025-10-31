@@ -168,33 +168,61 @@
         //} 
         #endregion
         #region 14
-        static ArrayList FindSubListWithSum(ArrayList list, int target)
+        //static ArrayList FindSubListWithSum(ArrayList list, int target)
+        //{
+        //    int currentSum = 0;
+        //    int start = 0;
+
+        //    for (int end = 0; end < list.Count; end++)
+        //    {
+        //        currentSum += (int)list[end];
+
+        //        while (currentSum > target && start < end)
+        //        {
+        //            currentSum -= (int)list[start];
+        //            start++;
+        //        }
+
+        //        if (currentSum == target)
+        //        {
+        //            ArrayList result = new ArrayList();
+        //            for (int i = start; i <= end; i++)
+        //            {
+        //                result.Add(list[i]);
+        //            }
+        //            return result;
+        //        }
+        //    }
+
+        //    return new ArrayList();
+        //}
+        #endregion
+        #region 15
+        static void ReverseFirstKElements<T>(Queue<T> queue, int k)
         {
-            int currentSum = 0;
-            int start = 0;
-
-            for (int end = 0; end < list.Count; end++)
+            if (queue == null || k <= 0 || k > queue.Count)
             {
-                currentSum += (int)list[end];
-
-                while (currentSum > target && start < end)
-                {
-                    currentSum -= (int)list[start];
-                    start++;
-                }
-
-                if (currentSum == target)
-                {
-                    ArrayList result = new ArrayList();
-                    for (int i = start; i <= end; i++)
-                    {
-                        result.Add(list[i]);
-                    }
-                    return result;
-                }
+                Console.WriteLine("Invalid input.");
+                return;
             }
 
-            return new ArrayList();
+            Stack<T> stack = new Stack<T>();
+
+            for (int i = 0; i < k; i++)
+            {
+                stack.Push(queue.Dequeue());
+            }
+
+            while (stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop());
+            }
+
+            int remaining = queue.Count - k;
+            for (int i = 0; i < remaining; i++)
+            {
+                queue.Enqueue(queue.Dequeue());
+            }
         }
         #endregion
         static void Main(string[] args)
@@ -410,17 +438,29 @@
 
             #endregion
             #region 14
-            ArrayList numbers = new ArrayList() { 1, 2, 3, 7, 5 };
-            int target = 12;
+            //ArrayList numbers = new ArrayList() { 1, 2, 3, 7, 5 };
+            //int target = 12;
 
-            ArrayList result = FindSubListWithSum(numbers, target);
+            //ArrayList result = FindSubListWithSum(numbers, target);
 
-            if (result.Count > 0)
-                Console.WriteLine("[" + string.Join(", ", result.ToArray()) + "]");
-            else
-                Console.WriteLine("No sublist found");
+            //if (result.Count > 0)
+            //    Console.WriteLine("[" + string.Join(", ", result.ToArray()) + "]");
+            //else
+            //    Console.WriteLine("No sublist found");
             #endregion
+            #region 15
+
+            Queue<int> queue = new Queue<int>(new int[] { 1, 2, 3, 4, 5 });
+            int k = 3;
+
+            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+
+            ReverseFirstKElements(queue, k);
+
+            Console.WriteLine("Queue after reversing first " + k + " elements: " + string.Join(", ", queue));
         }
+        #endregion
+    }
 
     }
 }
