@@ -4,6 +4,7 @@
 
     internal class Program
     {
+
         #region 2
         //static List<int> GetEvenNumbers(List<int> numbers)
         //{
@@ -56,7 +57,30 @@
             //    }
             //} 
             #endregion
+            #region 3
+            try
+            {
+                FixedSizeList<int> numbers = new FixedSizeList<int>(3);
 
+                numbers.Add(10);
+                numbers.Add(20);
+                numbers.Add(30);
+
+                Console.WriteLine("Items in the list:");
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    Console.WriteLine(numbers.Get(i));
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            } 
+            #endregion
         }
+    }
 
     }
+
