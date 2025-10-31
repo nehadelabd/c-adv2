@@ -1,5 +1,6 @@
 ﻿namespace c_adv2
 {
+    using System.Collections;
     using System.Collections.Generic;
 
     internal class Program
@@ -60,37 +61,38 @@
         //} 
         #endregion
         #region 8
-        static bool IsBalanced(string input)
-        {
-            Stack<char> stack = new Stack<char>();
+        //static bool IsBalanced(string input)
+        //{
+        //    Stack<char> stack = new Stack<char>();
 
-            foreach (char ch in input)
-            {
+        //    foreach (char ch in input)
+        //    {
 
-                if (ch == '(' || ch == '[' || ch == '{')
-                {
-                    stack.Push(ch);
-                }
+        //        if (ch == '(' || ch == '[' || ch == '{')
+        //        {
+        //            stack.Push(ch);
+        //        }
 
-                else if (ch == ')' || ch == ']' || ch == '}')
-                {
-                    if (stack.Count == 0)
-                        return false;
+        //        else if (ch == ')' || ch == ']' || ch == '}')
+        //        {
+        //            if (stack.Count == 0)
+        //                return false;
 
-                    char top = stack.Pop();
+        //            char top = stack.Pop();
 
-                    if ((ch == ')' && top != '(') ||
-                        (ch == ']' && top != '[') ||
-                        (ch == '}' && top != '{'))
-                    {
-                        return false;
-                    }
-                }
-            } 
+        //            if ((ch == ')' && top != '(') ||
+        //                (ch == ']' && top != '[') ||
+        //                (ch == '}' && top != '{'))
+        //            {
+        //                return false;
+        //            }
+        //        }
+          //   return stack.Count == 0;
+      
+        //    } 
             #endregion
 
-            return stack.Count == 0;
-        }
+       
 
         static void Main(string[] args)
         {
@@ -225,12 +227,27 @@
             //} 
             #endregion
             #region 8
-            string input = "[()]{ }".Replace(" ", ""); // Remove spaces if any
+            //string input = "[()]{ }".Replace(" ", ""); // Remove spaces if any
 
-            if (IsBalanced(input))
-                Console.WriteLine("Balanced");
-            else
-                Console.WriteLine("Not Balanced"); 
+            //if (IsBalanced(input))
+            //    Console.WriteLine("Balanced");
+            //else
+            //    Console.WriteLine("Not Balanced"); 
+            #endregion
+            #region 11
+            Queue queue = new Queue();
+
+
+            queue.Enqueue(1);
+            queue.Enqueue("Apple");
+            queue.Enqueue(5.28);
+
+            Console.WriteLine("Queue contents:");
+
+            foreach (var item in queue)
+            {
+                Console.WriteLine(item + " (Type: " + item.GetType().Name + ")");
+            } 
             #endregion
         }
     }
