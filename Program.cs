@@ -115,34 +115,58 @@
         //} 
         #endregion
         #region 12
-        static void SearchInStack(Stack<int> stack, int target)
+        //static void SearchInStack(Stack<int> stack, int target)
+        //{
+        //    int count = 0;
+        //    bool found = false;
+
+        //    Stack<int> tempStack = new Stack<int>(stack);
+
+        //    while (tempStack.Count > 0)
+        //    {
+        //        int top = tempStack.Pop();
+        //        count++;
+
+        //        if (top == target)
+        //        {
+        //            Console.WriteLine($"Target was found successfully and the count = {count}");
+        //            found = true;
+        //            break;
+        //        }
+        //    }
+
+        //    if (!found)
+        //    {
+        //        Console.WriteLine("Target was not found");
+        //    }
+        //} 
+        #endregion
+        #region 13
+        static int[] FindIntersection(int[] arr1, int[] arr2)
         {
-            int count = 0;
-            bool found = false;
+            List<int> result = new List<int>();
+            Dictionary<int, int> freq = new Dictionary<int, int>();
 
-            // Create a temporary copy since popping will remove elements
-            Stack<int> tempStack = new Stack<int>(stack);
-
-            while (tempStack.Count > 0)
+            foreach (int num in arr1)
             {
-                int top = tempStack.Pop();
-                count++;
+                if (freq.ContainsKey(num))
+                    freq[num]++;
+                else
+                    freq[num] = 1;
+            }
 
-                if (top == target)
+            foreach (int num in arr2)
+            {
+                if (freq.ContainsKey(num) && freq[num] > 0)
                 {
-                    Console.WriteLine($"Target was found successfully and the count = {count}");
-                    found = true;
-                    break;
+                    result.Add(num);
+                    freq[num]--;
                 }
             }
 
-            if (!found)
-            {
-                Console.WriteLine("Target was not found");
-            }
+            return result.ToArray();
         } 
         #endregion
-
         static void Main(string[] args)
         {
             #region 4
@@ -314,27 +338,49 @@
             //Console.WriteLine("Array without duplicates: " + string.Join(", ", result));
             #endregion
             #region 12
-            Stack<int> numbers = new Stack<int>();
+            //Stack<int> numbers = new Stack<int>();
 
-            numbers.Push(10);
-            numbers.Push(20);
-            numbers.Push(30);
-            numbers.Push(40);
-            numbers.Push(50);
+            //numbers.Push(10);
+            //numbers.Push(20);
+            //numbers.Push(30);
+            //numbers.Push(40);
+            //numbers.Push(50);
 
-            Console.WriteLine("Stack contents (top to bottom):");
-            foreach (int num in numbers)
-            {
-                Console.WriteLine(num);
-            }
+            //Console.WriteLine("Stack contents (top to bottom):");
+            //foreach (int num in numbers)
+            //{
+            //    Console.WriteLine(num);
+            //}
 
-            Console.Write("\nEnter the target number to search for: ");
-            int target = int.Parse(Console.ReadLine());
+            //Console.Write("\nEnter the target number to search for: ");
+            //int target = int.Parse(Console.ReadLine());
 
-            SearchInStack(numbers, target); 
+            //SearchInStack(numbers, target); 
             #endregion
+            #region 13
+            string[] sizes = Console.ReadLine().Split(',');
+            int n1 = int.Parse(sizes[0]);
+            int n2 = int.Parse(sizes[1]);
 
-        }
+            int[] arr1 = Console.ReadLine()
+                                .Trim('[', ']', ' ')
+                                .Split(',')
+                                .Select(int.Parse)
+                                .ToArray();
+
+            int[] arr2 = Console.ReadLine()
+                                .Trim('[', ']', ' ')
+                                .Split(',')
+                                .Select(int.Parse)
+                                .ToArray();
+
+            int[] intersection = FindIntersection(arr1, arr2);
+
+            Console.WriteLine("[" + string.Join(",", intersection) + "]");
+        
+        #endregion
+
+    }
 
     }
 }
