@@ -4,6 +4,26 @@
 
     internal class Program
     {
+        static int FirstNonRepeatedCharIndex(string input)
+        {
+            Dictionary<char, int> charCount = new Dictionary<char, int>();
+
+            foreach (char c in input)
+            {
+                if (charCount.ContainsKey(c))
+                    charCount[c]++;
+                else
+                    charCount[c] = 1;
+            }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (charCount[input[i]] == 1)
+                    return i;
+            }
+
+            return -1;
+        }
 
         #region 2
         //static List<int> GetEvenNumbers(List<int> numbers)
@@ -23,6 +43,14 @@
         #endregion
         static void Main(string[] args)
         {
+
+            string text = "swiss";
+            int index = FirstNonRepeatedCharIndex(text);
+
+            if (index != -1)
+                Console.WriteLine($"First non-repeated character: '{text[index]}' at index {index}");
+            else
+                Console.WriteLine("No non-repeated character found.");
             #region 2
             //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -58,27 +86,29 @@
             //} 
             #endregion
             #region 3
-            try
-            {
-                FixedSizeList<int> numbers = new FixedSizeList<int>(3);
+            //try
+            //{
+            //    FixedSizeList<int> numbers = new FixedSizeList<int>(3);
 
-                numbers.Add(10);
-                numbers.Add(20);
-                numbers.Add(30);
+            //    numbers.Add(10);
+            //    numbers.Add(20);
+            //    numbers.Add(30);
 
-                Console.WriteLine("Items in the list:");
-                for (int i = 0; i < numbers.Count; i++)
-                {
-                    Console.WriteLine(numbers.Get(i));
-                }
+            //    Console.WriteLine("Items in the list:");
+            //    for (int i = 0; i < numbers.Count; i++)
+            //    {
+            //        Console.WriteLine(numbers.Get(i));
+            //    }
 
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            } 
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error: " + ex.Message);
+            //} 
             #endregion
+
+
         }
     }
 
