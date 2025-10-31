@@ -87,13 +87,18 @@
         //                return false;
         //            }
         //        }
-          //   return stack.Count == 0;
-      
+        //   return stack.Count == 0;
+
         //    } 
-            #endregion
+        #endregion
 
-       
 
+        #region 10
+        //static void RemoveOddNumbers(List<int> list)
+        //{
+        //    list.RemoveAll(n => n % 2 != 0);
+        //} 
+        #endregion
         static void Main(string[] args)
         {
             #region 4
@@ -235,19 +240,26 @@
             //    Console.WriteLine("Not Balanced"); 
             #endregion
             #region 11
-            Queue queue = new Queue();
+            //Queue queue = new Queue();
 
 
-            queue.Enqueue(1);
-            queue.Enqueue("Apple");
-            queue.Enqueue(5.28);
+            //queue.Enqueue(1);
+            //queue.Enqueue("Apple");
+            //queue.Enqueue(5.28);
 
-            Console.WriteLine("Queue contents:");
+            //Console.WriteLine("Queue contents:");
 
-            foreach (var item in queue)
-            {
-                Console.WriteLine(item + " (Type: " + item.GetType().Name + ")");
-            } 
+            //foreach (var item in queue)
+            //{
+            //    Console.WriteLine(item + " (Type: " + item.GetType().Name + ")");
+            //} 
+            #endregion
+            #region 10
+            //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
+
+            //Console.WriteLine("Original List: " + string.Join(", ", numbers));
+            //RemoveOddNumbers(numbers);
+            //Console.WriteLine("After Removing Odd Numbers: " + string.Join(", ", numbers)); 
             #endregion
         }
     }
