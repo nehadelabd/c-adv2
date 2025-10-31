@@ -4,26 +4,28 @@
 
     internal class Program
     {
-        static int FirstNonRepeatedCharIndex(string input)
-        {
-            Dictionary<char, int> charCount = new Dictionary<char, int>();
+        #region 4
+        //static int FirstNonRepeatedCharIndex(string input)
+        //{
+        //    Dictionary<char, int> charCount = new Dictionary<char, int>();
 
-            foreach (char c in input)
-            {
-                if (charCount.ContainsKey(c))
-                    charCount[c]++;
-                else
-                    charCount[c] = 1;
-            }
+        //    foreach (char c in input)
+        //    {
+        //        if (charCount.ContainsKey(c))
+        //            charCount[c]++;
+        //        else
+        //            charCount[c] = 1;
+        //    }
 
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (charCount[input[i]] == 1)
-                    return i;
-            }
+        //    for (int i = 0; i < input.Length; i++)
+        //    {
+        //        if (charCount[input[i]] == 1)
+        //            return i;
+        //    }
 
-            return -1;
-        }
+        //    return -1;
+        //} 
+        #endregion
 
         #region 2
         //static List<int> GetEvenNumbers(List<int> numbers)
@@ -43,14 +45,16 @@
         #endregion
         static void Main(string[] args)
         {
+            #region 4
 
-            string text = "swiss";
-            int index = FirstNonRepeatedCharIndex(text);
+            //string text = "swiss";
+            //int index = FirstNonRepeatedCharIndex(text);
 
-            if (index != -1)
-                Console.WriteLine($"First non-repeated character: '{text[index]}' at index {index}");
-            else
-                Console.WriteLine("No non-repeated character found.");
+            //if (index != -1)
+            //    Console.WriteLine($"First non-repeated character: '{text[index]}' at index {index}");
+            //else
+            //    Console.WriteLine("No non-repeated character found."); 
+            #endregion
             #region 2
             //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -107,10 +111,29 @@
             //    Console.WriteLine("Error: " + ex.Message);
             //} 
             #endregion
+            string[] firstLine = Console.ReadLine().Split();
+            int n = int.Parse(firstLine[0]);
+            int q = int.Parse(firstLine[1]);
 
+            int[] arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
+            for (int i = 0; i < q; i++)
+            {
+                int x = int.Parse(Console.ReadLine());
+                int count = 0;
+
+                foreach (int num in arr)
+                {
+                    if (num > x)
+                        count++;
+                }
+
+                Console.WriteLine(count);
+            }
         }
-    }
 
     }
+    }
+
+   
 
